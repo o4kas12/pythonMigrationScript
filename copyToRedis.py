@@ -14,8 +14,8 @@ else:
 conn = psycopg2.connect(dbname='postgres', user='postgres', password='111111', host='localhost')
 cursor = conn.cursor()
 
-cursor.execute("select * from books")
-books = cursor.fetchall()
+cursor.execute("select gtin, tail from marking.line where batch_date = '2022-12-02' and line = 'A1-13' and cod_gp = '31220' and verified_status='verified'")
+data = cursor.fetchall()
 
-for i in range(len(books)):
-    print(i, " / ", len(books), books[i])
+for i in range(len(data)):
+    print(i+1, " / ", len(data), data[i])
